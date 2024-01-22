@@ -114,30 +114,14 @@ def get_squere_edge_index(n_patches):
                 b = (i-1) + j * n_patches
                 edge_index[0].append(a)
                 edge_index[1].append(b)
-            
-            if j > 0:
-                b = i + (j-1) * n_patches
-                edge_index[0].append(a)
-                edge_index[1].append(b)
-            
-            if i < n_patches - 1:
-                b = (i+1) + j * n_patches
-                edge_index[0].append(a)
-                edge_index[1].append(b)
-            
-            if j < n_patches - 1:
-                b = i + (j+1) * n_patches
-                edge_index[0].append(a)
-                edge_index[1].append(b)
-            
-            # squere
+                
             if i > 0 and j > 0:
                 b = (i-1) + (j-1) * n_patches
                 edge_index[0].append(a)
                 edge_index[1].append(b)
-
-            if i > 0 and j < n_patches - 1:
-                b = (i-1) + (j+1) * n_patches
+            
+            if j > 0:
+                b = i + (j-1) * n_patches
                 edge_index[0].append(a)
                 edge_index[1].append(b)
             
@@ -146,8 +130,24 @@ def get_squere_edge_index(n_patches):
                 edge_index[0].append(a)
                 edge_index[1].append(b)
             
+            if i < n_patches - 1:
+                b = (i+1) + j * n_patches
+                edge_index[0].append(a)
+                edge_index[1].append(b)
+            
             if i < n_patches - 1 and j < n_patches - 1:
                 b = (i+1) + (j+1) * n_patches
+                edge_index[0].append(a)
+                edge_index[1].append(b)
+
+            if j < n_patches - 1:
+                b = i + (j+1) * n_patches
+                edge_index[0].append(a)
+                edge_index[1].append(b)
+            
+
+            if i > 0 and j < n_patches - 1:
+                b = (i-1) + (j+1) * n_patches
                 edge_index[0].append(a)
                 edge_index[1].append(b)
             
@@ -389,4 +389,4 @@ def make_experiment(n_EPOCHS: int, test_name = "Test_001"):
     execution(model, train_loader, test_loader, device, path, n_EPOCHS = n_EPOCHS, current_epoch = current_epoch)
 
 if __name__ == '__main__':
-  make_experiment(50, "CIFAR10_gnn_squere_transformer_00")
+  make_experiment(50, "CIFAR10_gnn_squere_transformer_01")
